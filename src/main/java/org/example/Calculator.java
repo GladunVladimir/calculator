@@ -58,7 +58,7 @@ class CalculatorPanel extends JPanel {
         ActionListener command = new CommandAction();
 
         panel = new JPanel();
-        panel.setLayout(new GridLayout(4, 4));
+        panel.setLayout(new GridLayout(5, 5));
 
         addButton("7", insert);
         addButton("8", insert);
@@ -79,6 +79,10 @@ class CalculatorPanel extends JPanel {
         addButton(".", insert);
         addButton("=", command);
         addButton("+", command);
+
+        addButton("xˆ2", command);
+        addButton("C", command);
+
 
         add(panel, BorderLayout.CENTER);
     }
@@ -122,10 +126,17 @@ class CalculatorPanel extends JPanel {
         else if (lastCommand.equals("-")) result = result.subtract(x);
         else if (lastCommand.equals("*")) result = result.multiply(x);
         else if (lastCommand.equals("/")) result = result.divide(x);
+        else if (lastCommand.equals("xˆ2")) result = result.pow(2);
+        else if (lastCommand.equals("C")) result = BigDecimal.ZERO;
         else if (lastCommand.equals("=")) result = x;
+
+
+
         if (result.compareTo(BigDecimal.ZERO) == 0) {
             result = BigDecimal.ZERO;
         }
         display.setText(result.toString());
+
+        System.out.println(result);
     }
 }
